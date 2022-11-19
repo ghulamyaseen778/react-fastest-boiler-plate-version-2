@@ -4,17 +4,12 @@ import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { collection, doc, setDoc} from 'firebase/firestore'
 import {useNavigate} from 'react-router-dom'
 import InputCmp from '../InputCmp';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ButtonCmp from '../ButtonCmp';
@@ -22,6 +17,7 @@ import CopyRightCmp from '../CopyRight';
 import TopHeadCmp from '../TopHeadCmp';
 import { useDispatch, useSelector } from 'react-redux';
 import { LoginError } from '../../features/registrationSlice';
+import { FetchUser } from '../../features/UsersSlice';
 const SignUpCmp = () => {
 
   const Userdata = collection(db, "Users")
@@ -31,6 +27,7 @@ const SignUpCmp = () => {
   const [Password, SetPassword] = useState("")
   const ActiveUser = localStorage.getItem('User-Info')
   const {statement} = useSelector(state=>state.Registration)
+  const {bool} = useSelector(state=>state.UserInfo)
   const dispatch = useDispatch()
   
   const theme = createTheme();
@@ -66,6 +63,7 @@ const SignUpCmp = () => {
               const Ref = doc(db, 'Users', `${user.uid}`)
               await setDoc(Ref, UserSignUp)
               dispatch(LoginError({bool:false,statement:[""]}))
+              dispatch(FetchUser())
             }
             SingUp()
             navigate('/home')

@@ -2,7 +2,8 @@ import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
     Loginerror:false,
-    statement:[]
+    statement:[],
+    IfModal:false
 }
 
 const registrationSlice = createSlice({
@@ -13,9 +14,13 @@ const registrationSlice = createSlice({
            const Error = action.payload;
            state.Loginerror=Error.bool;
            state.statement=Error.statement;
+        },
+        ModalOpen:(state,action)=>{
+            const ModalOpen = action.payload;
+            state.IfModal=ModalOpen
         }
     }
 })
 
-export const {LoginError}=registrationSlice.actions;
+export const {LoginError,ModalOpen}=registrationSlice.actions;
 export default registrationSlice.reducer

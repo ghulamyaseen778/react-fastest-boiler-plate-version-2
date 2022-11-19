@@ -19,6 +19,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { createTheme, Link, ThemeProvider } from '@mui/material'
+import { FetchUser } from '../../features/UsersSlice'
 
 
 
@@ -29,6 +30,7 @@ const LoginCmp = () => {
   const ActiveUser = localStorage.getItem('User-Info')
   const dispatch = useDispatch()
   const {statement} = useSelector(state=>state.Registration)
+  const {bool,status} = useSelector(state=>state.UserInfo)
   const theme = createTheme();
 
 
@@ -49,6 +51,7 @@ const LoginCmp = () => {
           SetPassword('')
           // console.log('hello')
           dispatch(LoginError({bool:false,statement:[""]}))
+          dispatch(FetchUser())
         })
         .catch((error) => {
           // console.log(error)

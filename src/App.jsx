@@ -1,21 +1,33 @@
 import './App.css';
 //route import
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Route,Routes} from 'react-router-dom'
+import {useDispatch} from 'react-redux'
 //componete import
 import LoginCmp from './componants/registration';
 import SignUpCmp from './componants/registration/Signup';
+import NavBarCmp from './componants/NavBar';
+import {FetchUser} from './features/UsersSlice'
+import HomeCmp from './componants/HomeCmp';
+import AdminCmp from './componants/admin';
 
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+    dispatch(FetchUser())
+  },[])
   return (
     <>
+  <NavBarCmp/>
     <Routes>
       <Route index element={<LoginCmp/>}/>
       <Route path='/signup' element={<SignUpCmp/>}/>
+      <Route path='/home' element={<HomeCmp/>}/>
     </Routes>
     <Routes>
-      <Route path='/si' element={<h1>hello</h1>}/>
+      <Route path={`/admin/admin`} element={<AdminCmp/>}/>
     </Routes>
     
     </>
