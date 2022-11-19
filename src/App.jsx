@@ -27,7 +27,7 @@ function App() {
       <Route path='/home' element={<HomeCmp/>}/>
     </Routes>
     <Routes>
-      <Route path={`/admin/admin`} element={<AdminCmp/>}/>
+      <Route path={`/admin/u1XO2KeIQWXMshJCP340hBZnd813`} element={<AdminCmp/>}/>
     </Routes>
     
     </>

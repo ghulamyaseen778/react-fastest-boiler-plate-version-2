@@ -5,11 +5,11 @@ import { useNavigate } from 'react-router-dom'
 const AdminCmp = () => {
     const {data} = useSelector((state)=>state.UserInfo)
     const navigate = useNavigate
-    useEffect(()=>{
-        if(data.Role=='User'){
-            navigate('/home')
-        }
-    },[])
+    // useEffect(()=>{
+    //     if(data.Role=='User'){
+    //         navigate('/home')
+    //     }
+    // },[])
   return (
     <div>AdminCmp</div>
   )

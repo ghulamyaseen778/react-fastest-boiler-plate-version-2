@@ -27,6 +27,7 @@ const NavBarCmp = () => {
   const navigate = useNavigate()
   const {bool,data} = useSelector(state=>state.UserInfo)
   const dispatch = useDispatch()
+  const ActiveUser = localStorage.getItem("User-Info")
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -195,7 +196,7 @@ const settings = [{text:'Profile', func:()=>handleClickOpen()}, {text:'Logout', 
                 <Typography textAlign="center">{setting.text}</Typography>
               </MenuItem>
             ))}
-            <MenuItem onClick={()=>navigate('/admin/admin')}>
+            <MenuItem onClick={()=>navigate(`/admin/${ActiveUser}`)}>
             {data?.Role=="admin"?
                 <Typography textAlign="center">DashBoard</Typography>:<></>}
             </MenuItem>
